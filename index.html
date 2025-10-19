@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhoTech Web</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jockey+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+    <div class="cursor"></div>
+    <div class="cursor-hover"></div>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="imgs/LOGO/MAINLOGO (lighter).png" alt="PhoTech Logo" class="main-logo">
+            </div>
+            <div class="nav-items-container">
+                 <ul class="nav-items">
+                     <li><a href="#about">About Us</a></li>
+                     <li><a href="#service">Service</a></li>
+                     <li><a href="#contact">Contact Us</a></li>
+                 </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="landing-page" id="home">
+             <div class="cover1">
+                 <video autoplay loop muted playsinline>
+                    <source src="assets\homepage.mp4" type="video/mp4">
+                 </video>
+            </div>
+            <div class=" cover2"> <img src="assets\HomePage Element.png"> </div>
+
+            <div class="content">
+                <h1>Welcome!</h1>
+                <p>Welcome to PhoTech, your awesome solution for free, affordable, and high-quality stylish content! We turn your digital dreams into incredible assets with ease.</p>
+                <button>Order Now</button>
+            </div>
+        </section>
+
+        
+
+
+
+         <section class="section__about" id="about">
+
+               <div class="main__about">
+                      <div class="about__image">
+                      <img src="imgs/AbourUs Hero.png" </div>
+
+                      <div class="about__text">
+                      <div class="section__header">
+                      <h3 class="heading"> <span> About </span> us </h3>
+                      <h2 class="sub__heading"> We Connect, Advocate, and Educate. </h2>
+                      </div>
+                      <h2>About Us</h2>
+                     <p>PhoTech is more than just a photo printing service; we're a student-run business corporation dedicated to blending creativity with innovation. As part of our Entrepreneurship and Empowerment Technology project at Don Bosco Senior High School Paranaque, we aim to provide affordable, convenient, and high-quality photo printing services to the school community. We turn digital photos into lasting physical prints using custom-designed templates and premium materials.</p>
+
+                     <h3>Our Vision</h3>
+                     <p>We envision a school community where photo printing is convenient, accessible, and affordable for every student—without the need to travel far or wait in long lines.</p>
+
+                     <h3>Our Mission</h3>
+                     <p>Our mission is to deliver fast, affordable, and high-quality photo printing services tailored specifically for students. We aim to reduce the stress of errands by bringing printing closer to home or campus, using available resources and student-friendly prices.</p>
+
+                     <p>This venture is our way of putting classroom learning into real-world practice, blending entrepreneurship with the power of technology to create something truly valuable. As a BMBE-supported business, we are committed to ethical practices, community engagement, and sustainable operations.</p>
+
+                      <a href="#" class="home__btn"> Explore More! </a> 
+                      </div>
+
+               </section>
+
+        <section id="service" class="service-page">
+            <h2>Service Page</h2>
+            <h3>Capture Your Memories!</h3>
+            <p>Ready to create lasting memories? Here's how our service works:</p>
+            <ol>
+                <li><strong>Upload Your Photo or Schedule a Photo Op:</strong> You can either upload your favorite photo directly from your device, or schedule a convenient time for a professional photo session with our team.</li>
+                <li><strong>Enter Your Information:</strong> Please provide your name, grade and section, and contact number in the fields below. This information helps us keep track of your order and deliver your photos efficiently.</li>
+                <li><strong>Instant Order ID:</strong> Once you submit your information and photo (or schedule your session), you'll receive a unique Order ID immediately. Keep this ID handy for any inquiries.</li>
+                <li><strong>Secure and Private:</strong> Rest assured that your photos are handled with the utmost privacy and care. Once you upload your photo, it's directly and securely sent to our email. Only authorized personnel have access to it, ensuring that your personal moments remain private.</li>
+                <li><strong>Order Tracking (Name - OrderID):</strong> You can view a list of names and corresponding Order IDs on the side panel. This allows you to confirm that your order has been received and is being processed.</li>
+            </ol>
+
+            <section id="customize" class="customize-section">
+    <h2>Customize Your Template</h2>
+    <p>Design your own template, add stickers, text, and upload images. We'll send your design to our team!</p>
+    
+    <canvas id="templateCanvas" width="600" height="400" style="border: 1px solid #fff; margin-bottom: 20px;"></canvas>
+    
+    <form id="customizeForm">
+      
+        <div>
+            <label for="sticker">Add Sticker (e.g., enter URL or select from options):</label>
+            <input type="text" id="sticker" placeholder="e.g., URL to a sticker image">
+            <button type="button" id="addSticker">Add Sticker</button>
+        </div>
+        
+        <div>
+            <label for="customText">Add Text:</label>
+            <input type="text" id="customText" placeholder="Enter text to add">
+            <button type="button" id="addText">Add Text</button>
+        </div>
+        
+        <div>
+            <label for="uploadImage">Upload Your Image:</label>
+            <input type="file" id="uploadImage" accept="image/*">
+        </div>
+        
+        <div>
+            <label for="comments">Comments or Notes:</label>
+            <textarea id="comments" placeholder="Add any notes for us..." rows="4"></textarea>
+        </div>
+        
+        <button type="submit">Submit Design</button>
+    </form>
+</section>
+
+            <h3>Database</h3>
+            <p>(A simple table or list displaying "Name - OrderID" for each order in real-time)</p>
+            <p><strong>Explanation for Customers:</strong></p>
+            <p>We understand the importance of privacy, which is why we've designed our system to ensure that your photos are never publicly displayed. When you upload your photo or have a photo op with us, it's directly and securely transmitted to our email. This ensures that only our team members can view your photos, maintaining the highest level of confidentiality. The database displayed on this page only shows your name and Order ID for tracking purposes, but your actual photo remains completely private.</p>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <h2>Contact Us</h2>
+        <p>PhoTech</p>
+        <p>[Your Email Address]</p>
+        <p>[Your Phone Number (Optional)]</p>
+        <p>Room 304, 3rd Floor, Senior High School Building, Don Bosco High School, Brgy. Don Bosco, Parañaque City</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,380 @@
+body {
+    margin: 0;
+    overflow-x: hidden;
+    font-family: "Irish Grover", sans-serif; 
+    line-height: 1.6;
+    background: linear-gradient(to bottom, #0F466B, #5175B7);
+    color: #ffffff;
+    cursor: url('assets/cursor.png') 16 16, auto; 
+}
+
+a {
+    cursor: url('assets/cursor.png') 16 16, pointer; 
+}
+
+button {
+    cursor: url('assets/cursor.png') 16 16, pointer; 
+}
+
+
+
+
+ /* Navigation */
+    header {
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 10px 20px; 
+        text-align: center;
+        position: fixed; 
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 80px;
+        z-index: 10;
+        transition: 0.3s ease;
+    }
+
+    header.sticky {
+        background-color:linear-gradient(to bottom, #0F466B, #5175B7); 
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Added a subtle shadow */
+    }
+
+    header.sticky nav ul li a {
+        color: rgb(255, 255, 255);
+    }
+
+
+    /*NAVBAR MAN*/
+    .navbar .logo {
+        
+        vertical-align: left;
+        max-width: 2px; 
+        max-height: 3px;
+
+    }
+
+    .main-logo {
+        height: 100px; 
+        width: 300px; 
+        vertical-align: left; 
+    }
+
+    .logo .img {
+        max-width: 20px;
+        max-height: 10%;
+        vertical-align: middle;         
+    }
+
+
+
+
+
+   /*NAV ITEMS*/
+.nav-items-container {
+    display: flex;
+    vertical-align: right;
+    margin-left: 20px; 
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    margin-left: 70%;
+}
+
+nav ul li {
+    display: inline;
+    position: relative;
+    margin-right: 20px; /* Added: Space between nav items */
+}
+
+nav ul li:last-child {
+    margin-right: 0; /* Remove margin from the last item */
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    position: relative;
+    z-index: 1;
+    padding: 8px 0; /* Reduced padding */
+    display: inline-block;
+    font-family: "Jockey One", sans-serif;
+    transition: color 0.3s ease; /* Transition for the sticky effect */
+    font-size: 1.1em; /* Adjusted font size */
+}
+
+nav ul li:hover a {
+  background: linear-gradient(to right, black 50%, white 50%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+nav ul li::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: transparent; 
+    transition: all 0.3s ease;
+    z-index: 0;
+}
+
+header.sticky nav ul li::before {
+    background-color: #A1EBFF; 
+    width: 50%;
+}
+
+nav ul li:hover::before {
+    width: 50%; 
+    background-color: #A1EBFF; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* HOME PAGE */
+.landing-page {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.landing-page video {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width:50%;
+    height:auto;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 1;
+    object-fit: cover;
+}
+
+.cover1		   {
+				 z-index: -5; 
+}
+				 
+.cover2 	   { position: absolute; 
+				 top: -5px; 
+				 left: -5px;
+				 width: 100%; 
+				 z-index: 1; 
+				 min-width: 1920px;
+				 width: 100%;
+				 height: auto; 
+				 opacity: 1;}
+.cover2:hover  { opacity: 0; transition: all .3s ease; }
+
+.landing-page .content {
+    position: absolute;
+    top: 50%;
+    left: 35%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: left;
+    z-index: 2;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.landing-page .content h1 {
+    font-size: 3.5em; 
+    margin-bottom: 15px; 
+    font-family: "Lilita One", sans-serif; 
+    text-shadow: 4px 4px 8px black;
+}
+
+.landing-page .content p {
+    font-size: 1.3em;
+    margin-bottom: 20px; 
+    line-height: 1.8; 
+    font-family: "Comic Neue";
+}
+
+.landing-page .content button {
+    background: linear-gradient(to bottom, #0F466B, #5175B7); 
+    color: white;
+    padding: 12px 25px; 
+    border: none;
+    border-radius: 8px; 
+    font-size: 1.1em;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); 
+    font-family: "Comic Neue";
+    transition: all 0.3s ease; 
+}
+
+.landing-page .content button:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 4px 7px rgba(0, 0, 0, 0.3); 
+    border: 3px solid white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ABOUT US SECn */
+.section__about
+               { padding: 150px 0 0 0;
+                z-index: 100; }
+
+.main__about   { display: grid;
+                 grid-template-columns: repeat(2, 2fr);
+                 grid-gap: 1.5rem; }
+
+.about__image img
+               { max-width: 100%;
+                 position: relative;
+                 width: 800px;
+                 left: 0;
+                 top: -90px;
+                 border-radius: 20px; }
+
+.about__text   { height: 110px; }
+.about__image  { height: 110px; }
+
+.about__image p{ font-size: 20px; 
+                 padding: 15px; }
+
+.section__header { padding: 0 0 2rem 0; }
+
+.heading       { font-size: 26px;
+                 color: var(--main-color1); 
+                 width: 100%;
+                 padding: 5px; }
+
+.heading span  { color: var(--main-color); }
+
+.sub__heading  { font-size: 40px; }
+
+.about__text p { font-size: 26px;
+                 line-height: 35px;
+                 text-align: justify; }
+
+.about__link   { font-weight: 600; 
+                 color: var(--text-color); }
+
+.about__text .home__btn
+               { margin-top: 20px; }
+.about__text .home__btn:hover
+               { background: none;
+                 border: 2px solid var(--main-color);
+                 color: var(--main-color);
+                 transition: all .3s ease; }
+
+
+
+#about {
+    padding: 40px; 
+    text-align: center;
+}
+
+#about h2 {
+    font-size: 2.8em; 
+    margin-bottom: 20px; 
+    font-family: "Lilita One", sans-serif; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#about p {
+    font-family: "Irish Grover", sans-serif;
+    font-size: 1.1em; 
+    line-height: 1.7; 
+}
+
+
+
+
+
+
+
+
+
+/* SERVICE PAGE SEC */
+#service {
+    padding: 40px; 
+    text-align: center;
+}
+
+#service h2 {
+    font-size: 2.8em;
+    margin-bottom: 20px; 
+    font-family: "Lilita One", sans-serif; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+}
+
+#service p {
+    font-family: "Irish Grover", sans-serif;
+    font-size: 1.1em; /
+    line-height: 1.7; 
+}
+.customize-section {
+    padding: 50px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    margin: 20px 0;
+}
+
+.customize-section h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.customize-section label {
+    display: block;
+    margin-top: 10px;
+}
+
+.customize-section input, .customize-section textarea, .customize-section button {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #A1EBFF;
+    color: black;
+}
+
+
+
+
+/* POOOTERRR */
+footer {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px; 
+    text-align: center;
+}
+
+footer p {
+    margin: 5px 0;
+    font-family: "Irish Grover", sans-serif;
+}
