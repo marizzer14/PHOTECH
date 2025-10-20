@@ -19,7 +19,7 @@ button {
 
 
 
- /* Navigation */
+ /* NAV BAR */
     header {
         background-color: rgba(0, 0, 0, 0.5);
         padding: 10px 20px; 
@@ -28,14 +28,15 @@ button {
         top: 0;
         left: 0;
         width: 100%;
-        height: 80px;
+        height: 50px;
         z-index: 10;
         transition: 0.3s ease;
     }
 
     header.sticky {
         background-color:linear-gradient(to bottom, #0F466B, #5175B7); 
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Added a subtle shadow */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+        height: 25px;
     }
 
     header.sticky nav ul li a {
@@ -43,67 +44,109 @@ button {
     }
 
 
-    /*NAVBAR MAN*/
-    .navbar .logo {
-        
-        vertical-align: left;
-        max-width: 2px; 
-        max-height: 3px;
+    /*LOGO MAN*/
+.navbar .logo {
+    margin-top: -85px;
+    vertical-align: top; 
+    max-height: 100%;
+}
 
-    }
+.main-logo {
+    height: 60px;
+    width: auto;
+    vertical-align: top;
+    transition: transform 0.2s;
+}
+header.sticky .main-logo {
+    transition: transform 0.2s ease;
+    height: 40px;
+    width: auto;
+    
+}
 
-    .main-logo {
-        height: 100px; 
-        width: 300px; 
-        vertical-align: left; 
-    }
-
-    .logo .img {
-        max-width: 20px;
-        max-height: 10%;
-        vertical-align: middle;         
-    }
+.main-logo:hover {
+    transform: scale(1.07) rotate(-3deg);
+}
 
 
-
-
-
-   /*NAV ITEMS*/
+/*NAV ITEMS*/
 .nav-items-container {
     display: flex;
-    vertical-align: right;
-    margin-left: 20px; 
+    justify-content: flex-end; 
+    align-items: center; 
+    margin-left: auto; 
+    margin-right: 90px;
+    margin-top: -70px;
 }
 
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: inline-block;
-    margin-left: 70%;
+.navbar {
+    display: flex;
+    justify-content: space-between ;
+    align-items: center; 
+    padding: 10px 20px;
+    height: 100%;
 }
+
+
 
 nav ul li {
     display: inline;
     position: relative;
-    margin-right: 20px; /* Added: Space between nav items */
+    margin-right: 20px; 
 }
 
 nav ul li:last-child {
-    margin-right: 0; /* Remove margin from the last item */
+    margin-right: 0;
 }
 
 nav ul li a {
-    text-decoration: none;
+    text-decoration: underline;
     color: white;
-    font-weight: bold;
+    font-weight: normal;
     position: relative;
     z-index: 1;
-    padding: 8px 0; /* Reduced padding */
+    padding: 8px 0; 
     display: inline-block;
     font-family: "Jockey One", sans-serif;
-    transition: color 0.3s ease; /* Transition for the sticky effect */
-    font-size: 1.1em; /* Adjusted font size */
+    transition: color 0.3s ease; 
+    font-size: 1.4em; 
+    line-height: 1;
+}
+/* Base style for nav links */
+.nav-items a {
+  position: relative;
+  color: white;
+  text-decoration: none;
+  font-family: "Jockey One", sans-serif;
+  font-size: 1.4em;
+  padding: 8px 10px;
+  transition: color 0.5s ease;
+  overflow: hidden;
+}
+
+/* Pseudo-element for the fill animation */
+.nav-items a::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 50%;
+  background: white;
+  z-index: -1;
+  transition: width 0.8s ease; 
+  opacity: 0.5; 
+  border-radius: 3px;
+}
+
+/* When link is active */
+.nav-items a.active {
+  color: #0a2c43; 
+}
+
+/* fill-in */
+.nav-items a.active::before {
+  width: 100%;
 }
 
 nav ul li:hover a {
@@ -125,21 +168,16 @@ nav ul li::before {
     z-index: 0;
 }
 
-header.sticky nav ul li::before {
-    background-color: #A1EBFF; 
-    width: 50%;
-}
-
 nav ul li:hover::before {
     width: 50%; 
     background-color: #A1EBFF; 
 }
 
-
-
-
-
-
+header.sticky nav ul li a {
+    color: white; 
+    font-weight: normal; 
+    font-size: 1em; 
+}
 
 
 
@@ -148,6 +186,7 @@ nav ul li:hover::before {
 
 
 /* HOME PAGE */
+/* BG*/
 .landing-page {
     position: relative;
     height: 100vh;
@@ -183,6 +222,8 @@ nav ul li:hover::before {
 				 opacity: 1;}
 .cover2:hover  { opacity: 0; transition: all .3s ease; }
 
+/* CONTENT */
+
 .landing-page .content {
     position: absolute;
     top: 50%;
@@ -209,6 +250,10 @@ nav ul li:hover::before {
     font-family: "Comic Neue";
 }
 
+.content p span {
+    color: #A1EBFF; 
+    font-weight: bold;
+}
 .landing-page .content button {
     background: linear-gradient(to bottom, #0F466B, #5175B7); 
     color: white;
@@ -240,85 +285,583 @@ nav ul li:hover::before {
 
 
 
+/* ABOUT US SECn */
+fix if there is redundant
+
+make the glowing borders all in graient to bottom light blue to dark pink
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+    font-family: "Irish Grover", sans-serif; 
+    line-height: 1.6;
+    background: linear-gradient(to bottom, #0F466B, #5175B7);
+    color: #ffffff;
+    cursor: url('assets/cursor.png') 16 16, auto; 
+}
+
+a {
+    cursor: url('assets/cursor.png') 16 16, pointer; 
+}
+
+button {
+    cursor: url('assets/cursor.png') 16 16, pointer; 
+}
+
+
+
+
+ /* NAV BAR */
+    header {
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 10px 20px; 
+        text-align: center;
+        position: fixed; 
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50px;
+        z-index: 10;
+        transition: 0.3s ease;
+    }
+
+    header.sticky {
+        background-color:linear-gradient(to bottom, #0F466B, #5175B7); 
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+        height: 25px;
+    }
+
+    header.sticky nav ul li a {
+        color: rgb(255, 255, 255);
+    }
+
+
+    /*LOGO MAN*/
+.navbar .logo {
+    margin-top: -85px;
+    vertical-align: top; 
+    max-height: 100%;
+}
+
+.main-logo {
+    height: 60px;
+    width: auto;
+    vertical-align: top;
+    transition: transform 0.2s;
+}
+header.sticky .main-logo {
+    transition: transform 0.2s ease;
+    height: 40px;
+    width: auto;
+    
+}
+
+.main-logo:hover {
+    transform: scale(1.07) rotate(-3deg);
+}
+
+
+/*NAV ITEMS*/
+.nav-items-container {
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center; 
+    margin-left: auto; 
+    margin-right: 90px;
+    margin-top: -70px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between ;
+    align-items: center; 
+    padding: 10px 20px;
+    height: 100%;
+}
+
+
+
+nav ul li {
+    display: inline;
+    position: relative;
+    margin-right: 20px; 
+}
+
+nav ul li:last-child {
+    margin-right: 0;
+}
+
+nav ul li a {
+    text-decoration: underline;
+    color: white;
+    font-weight: normal;
+    position: relative;
+    z-index: 1;
+    padding: 8px 0; 
+    display: inline-block;
+    font-family: "Jockey One", sans-serif;
+    transition: color 0.3s ease; 
+    font-size: 1.4em; 
+    line-height: 1;
+}
+/* Base style for nav links */
+.nav-items a {
+  position: relative;
+  color: white;
+  text-decoration: none;
+  font-family: "Jockey One", sans-serif;
+  font-size: 1.4em;
+  padding: 8px 10px;
+  transition: color 0.5s ease;
+  overflow: hidden;
+}
+
+/* Pseudo-element for the fill animation */
+.nav-items a::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 50%;
+  background: white;
+  z-index: -1;
+  transition: width 0.8s ease; 
+  opacity: 0.5; 
+  border-radius: 3px;
+}
+
+/* When link is active */
+.nav-items a.active {
+  color: #0a2c43; 
+}
+
+/* fill-in */
+.nav-items a.active::before {
+  width: 100%;
+}
+
+nav ul li:hover a {
+  background: linear-gradient(to right, black 50%, white 50%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+nav ul li::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: transparent; 
+    transition: all 0.3s ease;
+    z-index: 0;
+}
+
+nav ul li:hover::before {
+    width: 50%; 
+    background-color: #A1EBFF; 
+}
+
+header.sticky nav ul li a {
+    color: white; 
+    font-weight: normal; 
+    font-size: 1em; 
+}
+
+
+
+
+
+
+
+/* HOME PAGE */
+/* BG*/
+.landing-page {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.landing-page video {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width:50%;
+    height:auto;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 1;
+    object-fit: cover;
+}
+
+.cover1		   {
+				 z-index: -5; 
+}
+				 
+.cover2 	   { position: absolute; 
+				 top: -5px; 
+				 left: -5px;
+				 width: 100%; 
+				 z-index: 1; 
+				 min-width: 1920px;
+				 width: 100%;
+				 height: auto; 
+				 opacity: 1;}
+.cover2:hover  { opacity: 0; transition: all .3s ease; }
+
+/* CONTENT */
+
+.landing-page .content {
+    position: absolute;
+    top: 50%;
+    left: 35%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: left;
+    z-index: 2;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.landing-page .content h1 {
+    font-size: 3.5em; 
+    margin-bottom: 15px; 
+    font-family: "Lilita One", sans-serif; 
+    text-shadow: 4px 4px 8px black;
+}
+
+.landing-page .content p {
+    font-size: 1.3em;
+    margin-bottom: 20px; 
+    line-height: 1.8; 
+    font-family: "Comic Neue";
+}
+
+.content p span {
+    color: #A1EBFF; 
+    font-weight: bold;
+}
+.landing-page .content button {
+    background: linear-gradient(to bottom, #0F466B, #5175B7); 
+    color: white;
+    padding: 12px 25px; 
+    border: none;
+    border-radius: 8px; 
+    font-size: 1.1em;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); 
+    font-family: "Comic Neue";
+    transition: all 0.3s ease; 
+}
+
+.landing-page .content button:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 4px 7px rgba(0, 0, 0, 0.3); 
+    border: 3px solid white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* ABOUT US SECn */
-.section__about
-               { padding: 150px 0 0 0;
-                z-index: 100; }
-
-.main__about   { display: grid;
-                 grid-template-columns: repeat(2, 2fr);
-                 grid-gap: 1.5rem; }
-
-.about__image img
-               { max-width: 100%;
-                 position: relative;
-                 width: 800px;
-                 left: 0;
-                 top: -90px;
-                 border-radius: 20px; }
-
-.about__text   { height: 110px; }
-.about__image  { height: 110px; }
-
-.about__image p{ font-size: 20px; 
-                 padding: 15px; }
-
-.section__header { padding: 0 0 2rem 0; }
-
-.heading       { font-size: 26px;
-                 color: var(--main-color1); 
-                 width: 100%;
-                 padding: 5px; }
-
-.heading span  { color: var(--main-color); }
-
-.sub__heading  { font-size: 40px; }
-
-.about__text p { font-size: 26px;
-                 line-height: 35px;
-                 text-align: justify; }
-
-.about__link   { font-weight: 600; 
-                 color: var(--text-color); }
-
-.about__text .home__btn
-               { margin-top: 20px; }
-.about__text .home__btn:hover
-               { background: none;
-                 border: 2px solid var(--main-color);
-                 color: var(--main-color);
-                 transition: all .3s ease; }
+.section__about {
+    padding: 150px 0 0 0;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
 
 
+.main__about {
+    display: flex;
+    border: 3px solid #ffa1d6;
+    border-radius: 20px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 15px rgba(161, 235, 255, 0.3);
+}
 
+
+.about__image img {
+    max-width: 100%;
+    width: 400px;
+    height: auto;
+    border-radius: 20px;
+    position: relative;
+    left: 0;
+    top: 0;
+}
+.about .span {
+    color: #61ddff;
+    font-weight: bold;
+}
+.about__text {
+    height: auto;
+    padding: 15px;
+}
+
+.about__image {
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about__image p {
+    font-size: 20px;
+    padding: 15px;
+}
+
+.section__header {
+    padding: 0 0 2rem 0;
+}
+
+
+.heading span {
+    color: #A1EBFF;
+}
+
+.sub__heading {
+    font-size: 40px;
+}
+
+.about__text p {
+    font-size: 26px;
+    line-height: 35px;
+    text-align: justify;
+}
 #about {
-    padding: 40px; 
+    padding: 40px;
     text-align: center;
 }
 
 #about h2 {
-    font-size: 2.8em; 
-    margin-bottom: 20px; 
-    font-family: "Lilita One", sans-serif; 
+    font-size: 2.8em;
+    margin-bottom: 20px;
+    font-family: "Lilita One", sans-serif;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 #about p {
-    font-family: "Irish Grover", sans-serif;
-    font-size: 1.1em; 
-    line-height: 1.7; 
+    font-family: "comic neue";
+    font-size: 1.1em;
+    line-height: 1.7;
+}
+.about__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+    width: 60%;
+}
+
+.about__image {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* =====  BOXED LAYOUT ===== */
+
+.main__about {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    border: none;
+    background: none;
+}
+
+/* Each Box */
+.about-box {
+    border: 3px solid;
+    border-color: linear-gradient(to bottom #90caf9 40%, #a10d70 60%);
+    border-radius: 20px;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 15px rgba(161, 235, 255, 0.3);
+    transition: box-shadow 0.25s, border-color 0.25s, transform 0.18s;
+    width: 90%;
+    max-width: 1000px;
+    text-align: justify;
+}
+
+.about-box:hover {
+    box-shadow: 0 12px 48px rgba(30, 136, 229, 0.18), 0 3px 16px rgba(0,0,0,0.08);
+    border-color: linear-gradient (to bottom #90caf9, #a10d70);
+    transform: scale(1.025);
 }
 
 
 
 
+.about-us-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
 
+.about-text {
+    width: 60%;
+}
 
+.about-image {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+}
+
+.about-image img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 20px;
+}
+
+/* Headings */
+.about-box h2,
+.about-box h3 {
+    font-family: "Lilita One", sans-serif;
+    font-size: 2em;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 15px;
+}
+
+/* Responsive design */
+@media (max-width: 900px) {
+    .about-us-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-text,
+    .about-image {
+        width: 100%;
+    }
+
+    .about-image img {
+        max-width: 300px;
+    }
+}
 
 
 
 /* SERVICE PAGE SEC */
+/*  Collapsible InstBox */
+.instruction-box {
+  position: relative;
+  margin: 40px auto;
+  padding: 25px;
+  width: 80%;
+  max-width: 900px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  transition: transform 0.3s ease, box-shadow 0.5s ease;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/**/
+.instruction-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 3px;
+  background: linear-gradient(180deg, #61ddff, #a10d70);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  animation: glowPulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes glowPulse {
+  0% {
+    box-shadow: 0 0 15px rgba(97, 221, 255, 0.4),
+                0 0 25px rgba(161, 13, 112, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 35px rgba(97, 221, 255, 0.8),
+                0 0 45px rgba(161, 13, 112, 0.6);
+  }
+}
+
+/* Tilt tas glow when hover */
+.instruction-box:hover {
+  transform: rotate(1deg) scale(1.02);
+}
+
+/* Hesj*/
+.instruction-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.instruction-header h3 {
+  font-family: "Lilita One", sans-serif;
+  font-size: 1.8em;
+  margin: 0;
+}
+
+/* Arrow button */
+.toggle-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2em;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.toggle-btn .arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+/* Rotate arrow when active */
+.instruction-box.active .toggle-btn .arrow {
+  transform: rotate(90deg);
+}
+
+/* Collapsible content */
+.instruction-content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.7s ease, opacity 0.5s ease;
+  font-family: "Comic Neue", sans-serif;
+  font-size: 1.2em;
+  line-height: 1.7;
+  margin-top: 20px;
+}
+
+.instruction-box.active .instruction-content {
+  max-height: 1000px;
+  opacity: 1;
+}
+
 #service {
     padding: 40px; 
     text-align: center;
@@ -333,7 +876,7 @@ nav ul li:hover::before {
 
 #service p {
     font-family: "Irish Grover", sans-serif;
-    font-size: 1.1em; /
+    font-size: 1.1em; 
     line-height: 1.7; 
 }
 .customize-section {
@@ -368,13 +911,103 @@ nav ul li:hover::before {
 
 
 /* POOOTERRR */
-footer {
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 20px; 
-    text-align: center;
+/* ===== FOOTER ===== */
+.footer {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  background: rgba(10, 10, 20, 0.9);
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
+  z-index: 10;
+  padding: 20px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-footer p {
-    margin: 5px 0;
-    font-family: "Irish Grover", sans-serif;
+/* Glowing border */
+.footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 2px;
+  background: linear-gradient(to bottom, #61ddff, #a10d70);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  animation: footerGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes footerGlow {
+  0% {
+    box-shadow: 0 0 15px rgba(97, 221, 255, 0.3),
+                0 0 25px rgba(161, 13, 112, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 30px rgba(97, 221, 255, 0.8),
+                0 0 40px rgba(161, 13, 112, 0.6);
+  }
+}
+
+.footer-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1000px;
+  width: 100%;
+}
+
+.footer-top h2 {
+  font-family: "Lilita One", sans-serif;
+  font-size: 1.8em;
+  background: linear-gradient(90deg, #61ddff, #a10d70);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 5px;
+}
+
+.contact-info {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  font-family: "Comic Neue", sans-serif;
+  font-size: 1.1em;
+  margin: 5px 0 10px 0;
+}
+
+.contact-info li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.3s ease;
+}
+
+.contact-info li:hover {
+  color: #61ddff;
+}
+
+.footer-nav {
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.footer-nav a {
+  color: white;
+  text-decoration: none;
+  font-family: "Jockey One", sans-serif;
+  font-size: 1.1em;
+  transition: color 0.3s ease;
+}
+
+.footer-nav a:hover {
+  color: #61ddff;
 }
