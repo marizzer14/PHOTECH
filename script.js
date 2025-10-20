@@ -1,4 +1,12 @@
-// Sticky Navigation
+
+document.getElementById("logo").addEventListener("click", function() {
+  window.location.href = window.location.origin + window.location.pathname + "#home";
+  window.location.reload();
+});
+
+
+
+// Sticky navd
 const navLinks = document.querySelectorAll('nav ul li a');
 const header = document.querySelector('header');
 
@@ -10,40 +18,27 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Smooth scrolling for navigation links
-navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetId = link.getAttribute('href').substring(1);
-        const targetElement = document.getElementById(targetId);
-        if (targetElement) {
-            window.scrollTo({
-                top: targetElement.offsetTop - header.offsetHeight,
-                behavior: 'smooth'
-            });
-        }
-    });
-});
 
-// New: Highlight active nav link based on scroll position
+// Highlight active nav link based on scroll position with smooth fill effect
 window.addEventListener('scroll', () => {
-    const sections = document.querySelectorAll('section, footer'); // Includes sections and footer
-    const scrollY = window.pageYOffset;
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100; // Offset for header height and smoothness
-        const sectionHeight = section.offsetHeight;
-        const sectionId = section.getAttribute('id');
-        
-        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + sectionId) {
-                    link.classList.add('active');
-                }
-            });
+  const sections = document.querySelectorAll('section, footer'); // detect all major parts
+  const navLinks = document.querySelectorAll('.nav-items a'); // your nav links
+  const scrollY = window.pageYOffset;
+
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 150; // adjust offset for header height
+    const sectionHeight = section.offsetHeight;
+    const sectionId = section.getAttribute('id');
+
+    if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + sectionId) {
+          link.classList.add('active');
         }
-    });
+      });
+    }
+  });
 });
 
 // EmailJS setup - Replace with your actual IDs from EmailJS dashboard
@@ -138,3 +133,14 @@ if (!canvas) {
             });
     });
 }
+
+// Expand/Collapse Instruction Box
+document.addEventListener("DOMContentLoaded", function () {
+  const instructionBox = document.querySelector(".instruction-box");
+  const toggleBtn = instructionBox.querySelector(".toggle-btn");
+
+  toggleBtn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    instructionBox.classList.toggle("active");
+  });
+});
