@@ -11,169 +11,181 @@
     <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="style.css">
-
 </head>
 <body>
 
     <div class="cursor"></div>
     <div class="cursor-hover"></div>
 
-    <header> ]
+    <header>
       <nav class="navbar"> 
-        <div class="logo"> <img src="imgs/LOGO/MAINLOGO (lighter).png" alt="PhoTech Logo" class="main-logo" onclick="location.reload();" />
-          </div> 
-            <div class="nav-items-container"> 
-              <ul class="nav-items"> 
-                <li><a href="#home"></a></li>
-                <li><a href="#about">About Us</a></li> 
-                <li><a href="#service">Service</a></li> 
-                <li><a href="#contact">Contact Us</a></li> 
-              </ul> 
-            </div> 
+        <div class="logo">
+          <!-- give the logo an id and remove inline reload -->
+          <img id="logo" src="imgs/LOGO/MAINLOGO (lighter).png" alt="PhoTech Logo" class="main-logo" />
+        </div> 
+        <div class="nav-items-container"> 
+          <ul class="nav-items"> 
+            <!-- Home removed so logo click handles going to landing -->
+            <li><a class="nav-link" data-target="about" href="#about">About Us</a></li> 
+            <li><a class="nav-link" data-target="service" href="#service">Service</a></li> 
+            <li><a class="nav-link" data-target="contact" href="#contact">Contact Us</a></li> 
+          </ul> 
+        </div> 
       </nav>  
     </header>
 
-    <main>
-        <section class="landing-page" id="home">
-             <div class="cover1">
-                 <video autoplay loop muted playsinline>
-                    <source src="assets\homepage.mp4" type="video/mp4">
-                 </video>
-            </div>
-            <div class=" cover2"> <img src="assets\HomePage Element.png"> </div>
+    <main> 
+      <section class="landing-page" id="home"> 
+        <div class="cover1"> 
+          <video autoplay loop muted playsinline> 
+            <source src="assets/homepage.mp4" type="video/mp4"> </video> 
+          </div> 
+          <div class="cover2">
+            <img src="assets/HomePage Element.png" alt="">
+          </div>
+          <div class="content"> 
+            <h1>Welcome!</h1>
+            <p>Welcome to PhoTech,<span1>take your photos</span1>, choose from our <br>
+              templates, personalize it, and print it with us. All with a student <br>
+              friendly fee (for as low as 25php per print)!</p> 
+            <button>Order Now</button>
+          </div>
+      </section>
 
-            <div class="content">
-                <h1>Welcome!</h1>
-                <p>Welcome to PhoTech,<span1>take your photos</span1>, choose from our tamplates, personalize it, and print it with us. All with a student friendly fee (for as low as 25php per print)!</p>
-                <button>Order Now</button>
+      <section id="about" class="about-section">
+        <div class="about-container">
+
+          <!-- ABOUT US BOX -->
+          <div class="about-box">
+            <div class="about-content">
+              <div class="about-text">
+                <h2>About Us</h2>
+                <p>
+                  PhoTech is more than just a photo printing service; we're a student-run business corporation dedicated to blending creativity with innovation. As part of our Entrepreneurship and Empowerment Technology project at Don Bosco Senior High School Paranaque, we aim to provide affordable, convenient, and high-quality photo printing services to the school community. We turn digital photos into lasting physical prints using custom-designed templates and premium materials.
+                </p>
+              </div>
+              <div class="about-image">
+                <img src="imgs/AbourUs Hero.png" alt="About Us">
+              </div>
             </div>
-        </section>
+          </div>
+
+          <!-- VISION BOX -->
+          <div class="about-box">
+            <h3>Our Vision</h3>
+            <p>
+              We envision a school community where photo printing is convenient, accessible, and affordable for every student—without the need to travel far or wait in long lines.
+            </p>
+          </div>
+
+          <!-- MISSION BOX -->
+          <div class="about-box">
+            <h3>Our Mission</h3>
+            <p>
+              Our mission is to deliver fast, affordable, and high-quality photo printing services tailored specifically for students. We aim to reduce the stress of errands by bringing printing closer to home or campus, using available resources and student-friendly prices.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <section id="service" class="service-page">
+        <h2>Service Page</h2>
+        <h3>Capture Your Memories!</h3>
+        <p>Ready to create lasting memories? Here's how our service works:</p>
+
+        <!-- Steps grid (simple bordered boxes, 3 columns) -->
+        <div class="step-grid" id="stepGrid">
+          <div class="step"><div class="step-number">1</div><div class="step-text">Upload your photo</div></div>
+          <div class="step"><div class="step-number">2</div><div class="step-text">Choose template</div></div>
+          <div class="step"><div class="step-number">3</div><div class="step-text">Preview & adjust</div></div>
+
+          <div class="step"><div class="step-number">4</div><div class="step-text">Enter your details</div></div>
+          <div class="step"><div class="step-number">5</div><div class="step-text">Confirm order</div></div>
+          <div class="step"><div class="step-number">6</div><div class="step-text">Complete & pick up</div></div>
+        </div>
+
+        <div class="privacy-note">
+          <strong>Privacy Notice:</strong> We protect your privacy. Uploaded photos are handled according to our privacy policy and used only for processing your order.
+        </div>
 
         
+        <div id="customize" class="customize-section">
+          <h2>Upload Photo & Order</h2>
 
+          <form id="orderForm" class="order-form" onsubmit="return false;">
+            <div class="upload-wrap" id="uploadWrap">
+              <label class="upload-label" for="uploadImage">Select an image</label>
+              <input type="file" id="uploadImage" accept="image/*">
+            </div>
 
+            <div id="imagePreviewContainer" class="image-preview-container" style="display:none;">
+              <div id="imagePreview" class="image-preview"></div>
+              <button type="button" id="reuploadBtn" class="btn-secondary">Reupload</button>
+            </div>
 
-        <section class="section__about" id="about">
-  <div class="main__about">
+            <div id="customerInfoContainer" class="customer-info-container">
+              <h3>Order Information</h3>
 
-    <!-- ABOUT US BOX -->
-    <div class="about-box about-us-box">
-      <div class="about-us-content">
-        <div class="about-text">
-          <h2>About Us</h2>
-          <p>
-            PhoTech is more than just a photo printing service; we're a student-run business corporation dedicated to blending creativity with innovation. As part of our Entrepreneurship and Empowerment Technology project at Don Bosco Senior High School Paranaque, we aim to provide affordable, convenient, and high-quality photo printing services to the school community. We turn digital photos into lasting physical prints using custom-designed templates and premium materials.
-          </p>
+              <div class="form-grid">
+                <div class="form-row">
+                  <label for="custName">Name <span class="req">*</span></label>
+                  <input type="text" id="custName" placeholder="Full name" required>
+                </div>
+
+                <div class="form-row">
+                  <label for="custGrade">Grade &amp; Section <span class="req">*</span></label>
+                  <input type="text" id="custGrade" placeholder="e.g. 12-A" required>
+                </div>
+
+                <div class="form-row">
+                  <label for="custPhone">Phone Number <span class="req">*</span></label>
+                  <input type="tel" id="custPhone" placeholder="09XXXXXXXXX" required>
+                </div>
+
+                <div class="form-row">
+                  <label for="custEmail">Email Address <small>(optional)</small></label>
+                  <input type="email" id="custEmail" placeholder="you@example.com">
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="button" id="submitOrderBtn" class="btn-primary" disabled>Submit Order</button>
+              </div>
+
+              <p class="form-note"><span class="req">*</span> Required fields. We will contact you to confirm your order.</p>
+            </div>
+          </form>
+        </section>
+      </section>
+
+      
+      </section>
+
+      <footer class="footer">
+        <section class="contact-section" id="contact">
+          
+        <div class="footer-container">
+          <div class="footer-top">
+            <h2>Contact Us</h2>
+            <ul class="contact-info">
+              <li>photech.photoprint@gmail.com</li>
+              <li>PhoTech: PhotoPrint</li>
+              <li>095•••••55</li>
+            </ul>
+          </div>
+
+          <nav class="footer-nav">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#service">Services</a>
+            <a href="#contact">Contact</a>
+          </nav>
         </div>
-        <div class="about-image">
-          <img src="imgs\AbourUs Hero.png" alt="About Us">
-        </div>
-      </div>
-    </div>
+      </footer>
 
-    <!-- VISION BOX -->
-    <div class="about-box">
-      <h3>Our Vision</h3>
-      <p>
-        We envision a school community where photo printing is convenient, accessible, and affordable for every student—without the need to travel far or wait in long lines.
-      </p>
-    </div>
-
-    <!-- MISSION BOX -->
-    <div class="about-box">
-      <h3>Our Mission</h3>
-      <p>
-        Our mission is to deliver fast, affordable, and high-quality photo printing services tailored specifically for students. We aim to reduce the stress of errands by bringing printing closer to home or campus, using available resources and student-friendly prices.
-      </p>
-    </div>
-
-  </div>
-</section>
-
-
-
-<section id="service" class="service-page">
-  <h2>Service Page</h2>
-  <h3>Capture Your Memories!</h3>
-  <p>Ready to create lasting memories? Here's how our service works:</p>
-
-  <!-- Glowing Instruction Box -->
-  <div class="instruction-box">
-    <div class="instruction-header">
-      <h3>Customize My Own Photo</h3>
-      <button class="toggle-btn">
-        <span class="arrow">→</span>
-      </button>
-    </div>
-
-    <!-- Collapsible content (only the ordered list) -->
-    <div class="instruction-content">
-      <ol>
-        <li><strong>Upload Your Photo or Schedule a Photo Op:</strong> You can either upload your favorite photo directly from your device, or schedule a convenient time for a professional photo session with our team.</li>
-        <li><strong>Enter Your Information:</strong> Please provide your name, grade and section, and contact number in the fields below. This information helps us keep track of your order and deliver your photos efficiently.</li>
-        <li><strong>Instant Order ID:</strong> Once you submit your information and photo (or schedule your session), you'll receive a unique Order ID immediately. Keep this ID handy for any inquiries.</li>
-        <li><strong>Secure and Private:</strong> Rest assured that your photos are handled with the utmost privacy and care. Once you upload your photo, it's directly and securely sent to our email. Only authorized personnel have access to it, ensuring that your personal moments remain private.</li>
-        <li><strong>Order Tracking (Name - OrderID):</strong> You can view a list of names and corresponding Order IDs on the side panel. This allows you to confirm that your order has been received and is being processed.</li>
-      </ol>
-    </div>
-  </div>
-
-  <!-- Rest of your content stays visible -->
-  <section id="customize" class="customize-section">
-    <h2>Customize Your Template</h2>
-    <p>Design your own template, add stickers, text, and upload images. We'll send your design to our team!</p>
-
-    <canvas id="templateCanvas" width="600" height="400" style="border: 1px solid #fff; margin-bottom: 20px;"></canvas>
-
-    <form id="customizeForm">
-      <div>
-        <label for="sticker">Add Sticker (e.g., enter URL or select from options):</label>
-        <input type="text" id="sticker" placeholder="e.g., URL to a sticker image">
-        <button type="button" id="addSticker">Add Sticker</button>
-      </div>
-
-      <div>
-        <label for="customText">Add Text:</label>
-        <input type="text" id="customText" placeholder="Enter text to add">
-        <button type="button" id="addText">Add Text</button>
-      </div>
-
-      <div>
-        <label for="uploadImage">Upload Your Image:</label>
-        <input type="file" id="uploadImage" accept="image/*">
-      </div>
-
-      <div>
-        <label for="comments">Comments or Notes:</label>
-        <textarea id="comments" placeholder="Add any notes for us..." rows="4"></textarea>
-      </div>
-
-      <button type="submit">Submit Design</button>
-    </form>
-  </section>
-
-    <footer class="footer">
-  <div class="footer-container">
-    <div class="footer-top">
-      <h2>Contact Us</h2>
-      <ul class="contact-info">
-        <li><i class="fas fa-envelope"></i> photech-photoprint@gmail.com</li>
-        <li><i class="fab fa-facebook"></i> PhoTech: PhotoPrint</li>
-        <li><i class="fas fa-phone"></i> 095•••••55</li>
-      </ul>
-    </div>
-
-    <nav class="footer-nav">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#service">Services</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </div>
-</footer>
-
+    </main>
 
     <script src="script.js"></script>
 </body>
-
 </html>
