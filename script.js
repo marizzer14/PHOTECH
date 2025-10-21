@@ -1,146 +1,159 @@
 
-document.getElementById("logo").addEventListener("click", function() {
-  window.location.href = window.location.origin + window.location.pathname + "#home";
-  window.location.reload();
-});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const logoEl = document.getElementById('logo');
+  if (logoEl) {
+    logoEl.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setTimeout(() => { location.reload(); }, 450);
+    });
+  }
+
+  const orderBtn = document.querySelector('.landing-page .content button');
+  if (orderBtn) {
+    orderBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const serviceSection = document.getElementById('service');
+      if (serviceSection) {
+        serviceSection.scrollIntoView({ behavior: 'smooth' });
+        history.replaceState(null, '', '#service');
+      } else {
+        window.location.href = window.location.pathname + '#service';
+      }
+    });
+  }
 
 
+  const submitBtn = document.getElementById('submitOrderBtn');
+  const custName = document.getElementById('custName');
+  const custGrade = document.getElementById('custGrade');
+  const custPhone = document.getElementById('custPhone');
+  const custEmail = document.getElementById('custEmail');
 
-// Sticky navd
-const navLinks = document.querySelectorAll('nav ul li a');
-const header = document.querySelector('header');
+ 
+  let hasImage = false;
+  const imagePreview = document.getElementById('imagePreview');
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
-        header.classList.add('sticky');
-    } else {
-        header.classList.remove('sticky');
-    }
-});
+  function checkImagePresence() {
+    if (!imagePreview) return false;
+    return !!imagePreview.querySelector('img');
+  }
 
+  function validateCustomerForm() {
+    hasImage = checkImagePresence();
+    const ok = custName && custGrade && custPhone &&
+      custName.value.trim() !== '' &&
+      custGrade.value.trim() !== '' &&
+      custPhone.value.trim() !== '' &&
+      hasImage;
+    if (submitBtn) submitBtn.disabled = !ok;
+  }
 
-// Highlight active nav link based on scroll position with smooth fill effect
-window.addEventListener('scroll', () => {
-  const sections = document.querySelectorAll('section, footer'); // detect all major parts
-  const navLinks = document.querySelectorAll('.nav-items a'); // your nav links
-  const scrollY = window.pageYOffset;
-
-  sections.forEach(section => {
-    const sectionTop = section.offsetTop - 150; // adjust offset for header height
-    const sectionHeight = section.offsetHeight;
-    const sectionId = section.getAttribute('id');
-
-    if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === '#' + sectionId) {
-          link.classList.add('active');
-        }
-      });
-    }
+  [custName, custGrade, custPhone].forEach(el => {
+    if (!el) return;
+    el.addEventListener('input', validateCustomerForm);
   });
-});
 
-// EmailJS setup - Replace with your actual IDs from EmailJS dashboard
-emailjs.init('YOUR_USER_ID');  // e.g., 'user_123456789'
+  const observer = new MutationObserver(validateCustomerForm);
+  if (imagePreview) observer.observe(imagePreview, { childList: true, subtree: true });
 
-const canvas = document.getElementById('templateCanvas');
-const ctx = canvas.getContext('2d');
-const form = document.getElementById('customizeForm');
-const stickerInput = document.getElementById('sticker');
-const addStickerButton = document.getElementById('addSticker');
-const customTextInput = document.getElementById('customText');
-const addTextButton = document.getElementById('addText');
-const uploadImageInput = document.getElementById('uploadImage');
-
-// Ensure canvas exists before proceeding
-if (!canvas) {
-    console.error('Canvas element with id "templateCanvas" not found.');
-} else {
-    // Function to add sticker (image) to canvas
-    addStickerButton.addEventListener('click', () => {
-        const stickerURL = stickerInput.value.trim();
-        if (stickerURL) {
-            const img = new Image();
-            img.crossOrigin = 'anonymous'; // For CORS if needed
-            img.src = stickerURL;
-            img.onload = () => {
-                ctx.drawImage(img, 100, 100, 100, 100);  // Adjustable position/size
-            };
-            img.onerror = () => alert('Failed to load sticker image.');
-        } else {
-            alert('Please enter a valid sticker URL.');
-        }
+  function showPopup(msg) {
+    const popup = document.createElement('div');
+    popup.className = 'form-popup';
+    popup.textContent = msg;
+    Object.assign(popup.style, {
+      position: 'fixed',
+      top: '18px',
+      left: '50%',
+      transform: 'translateX(-50%)',
+      background: '#ff6961',
+      color: '#fff',
+      padding: '10px 14px',
+      borderRadius: '6px',
+      zIndex: 9999,
+      boxShadow: '0 6px 18px rgba(0,0,0,0.4)'
     });
+    document.body.appendChild(popup);
+    setTimeout(() => popup.remove(), 3000);
+  }
 
-    // Function to add text to canvas
-    addTextButton.addEventListener('click', () => {
-        const text = customTextInput.value.trim();
-        if (text) {
-            ctx.font = '30px Arial';
-            ctx.fillStyle = 'white';
-            ctx.fillText(text, 50, 50);  // Adjustable position
-        } else {
-            alert('Please enter text to add.');
+  if (submitBtn) {
+    submitBtn.addEventListener('click', async () => {
+      validateCustomerForm();
+      if (submitBtn.disabled) {
+        showPopup('Please fill required fields and upload an image.');
+        return;
+      }
+
+      const payload = {
+        name: custName.value.trim(),
+        grade: custGrade.value.trim(),
+        phone: custPhone.value.trim(),
+        email: custEmail.value.trim() || '(not provided)'
+      };
+
+      if (window.emailjs) {
+        try {
+          const previewImg = imagePreview.querySelector('img');
+          const imageData = previewImg ? await toDataUrl(previewImg.src) : '';
+          await emailjs.send('YOUR_SERVICE_ID','YOUR_TEMPLATE_ID',{
+            to_name: 'PhoTech Team',
+            from_name: payload.name,
+            message: `Order\nName: ${payload.name}\nGrade: ${payload.grade}\nPhone: ${payload.phone}\nEmail: ${payload.email}`,
+            image_data: imageData
+          }, 'YOUR_USER_ID');
+          showPopup('Order submitted. Thank you!');
+          // reset minimal fields (you can expand as needed)
+          custName.value = custGrade.value = custPhone.value = custEmail.value = '';
+          // if you have reupload/reset logic, call it here
+        } catch (err) {
+          console.error(err);
+          showPopup('Failed to send. Try again later.');
         }
+        return;
+      }
+
+      const subject = encodeURIComponent('PhoTech Order — ' + payload.name);
+      const body = encodeURIComponent(
+        `Name: ${payload.name}\nGrade & Section: ${payload.grade}\nPhone: ${payload.phone}\nEmail: ${payload.email}\n\n(Attach uploaded image if needed.)`
+      );
+      window.location.href = `mailto:photech.photoprint@gmail.com?subject=${subject}&body=${body}`;
     });
+  }
+  function toDataUrl(url) {
+    return fetch(url).then(res => res.blob()).then(blob => new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    }));
+  }
 
-    // Upload image to canvas
-    uploadImageInput.addEventListener('change', (e) => {
-        const file = e.target.files[0];
-        if (file && file.type.startsWith('image/')) {
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                const img = new Image();
-                img.src = event.target.result;
-                img.onload = () => {
-                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                };
-            };
-            reader.readAsDataURL(file);
-        } else {
-            alert('Please select a valid image file.');
-        }
-    });
+  // initial validation run
+  validateCustomerForm();
 
-    // Form submission
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        // Check if canvas has content (basic check)
-        const canvasDataURL = canvas.toDataURL('image/png');
-        if (canvasDataURL === canvas.toDataURL()) {  // If empty, this might not be ideal; consider checking pixel data
-            alert('Please customize the design before submitting.');
-            return;
-        }
-        
-        // Prepare data to send
-        const templateParams = {
-            to_email: 'YOUR_EMAIL_ADDRESS',  // e.g., 'yourbusiness@email.com'
-            from_name: 'PhoTech Customer',
-            message: document.getElementById('comments').value || 'No comments provided.',
-            design_preview: canvasDataURL,
-            sticker: stickerInput.value || 'None',
-        };
-        
-        emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)  // e.g., 'service_abc123', 'template_xyz789'
-            .then((response) => {
-                alert('Design submitted successfully! We\'ll review it and get back to you.');
-                ctx.clearRect(0, 0, canvas.width, canvas.height);  // Clear canvas
-                form.reset();
-            }, (error) => {
-                alert('Oops! Something went wrong. Please try again. Error: ' + JSON.stringify(error));
-            });
-    });
-}
+  // upload input
+  const uploadInput = document.getElementById('uploadInput');
+  uploadInput.addEventListener('change', (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+    const url = URL.createObjectURL(file);
+    imagePreview.innerHTML = '';
+    const img = document.createElement('img');
+    img.src = url;
+    img.alt = 'Uploaded image';
+    imagePreview.appendChild(img);
 
-// Expand/Collapse Instruction Box
-document.addEventListener("DOMContentLoaded", function () {
-  const instructionBox = document.querySelector(".instruction-box");
-  const toggleBtn = instructionBox.querySelector(".toggle-btn");
+    imagePreviewContainer.classList.add('has-image');
+    uploadWrap.classList.add('has-image');
+    imagePreviewContainer.style.display = 'flex';
+    if (customerInfoContainer) {
+      customerInfoContainer.style.display = 'block'; 
+      customerInfoContainer.style.zIndex = '50';
+    }
 
-  toggleBtn.addEventListener("click", function (e) {
-    e.stopPropagation();
-    instructionBox.classList.toggle("active");
+    hasImage = true;
+    validateForm();
   });
 });
